@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document describes the complete implementation of the "Mark as Favorite" feature for the Accord Innovations Places Explorer application. The feature allows users to mark places as favorites, which are persisted to a database and displayed in the application.
+This document covers the favorite places feature for the Accord Innovations Places Explorer app. It explains how favorites are stored, how the backend API works, and how the frontend displays saved places.
 
 ## Architecture
 

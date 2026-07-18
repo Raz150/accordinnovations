@@ -8,18 +8,14 @@
 
 ## 📋 Executive Summary
 
-A complete, production-ready implementation of the "Mark as Favorite" feature for the Accord Innovations Places Explorer application.
+This adds the favorite places feature to Accord Innovations, with backend storage and frontend support.
 
-**What You Get:**
-- ✅ Full-stack implementation (Frontend + Backend)
-- ✅ Modern React patterns (custom hooks, HOC, render props)
-- ✅ Redux state management with async thunks
-- ✅ Spring Boot REST API with comprehensive error handling
-- ✅ Database persistence (MySQL or MSSQL)
-- ✅ Complete documentation and guides
-- ✅ API testing collection (Postman)
-- ✅ Both FE and BE function concurrently
-- ✅ Ready for immediate deployment
+**What’s included:**
+- Frontend integration for adding and removing favorites
+- Backend API endpoints for favorite data
+- Database persistence for saved favorites
+- Basic loading and error handling
+- Supporting docs and Postman examples
 
 ---
 
@@ -94,42 +90,14 @@ CREATE TABLE favorites (
 
 ---
 
-## 🎯 React Patterns Demonstrated
+## Frontend notes
 
-### 1. Custom Hooks ✅
-```javascript
-const { favorites, addFavorite, removeFavorite } = useFavorite();
-```
-- Encapsulates favorite logic
-- Reusable across components
-- Proper state management with useState
+The frontend uses a simple custom hook for favorite state and a Redux slice for async API calls.
 
-### 2. Higher-Order Component (HOC) ✅
-```javascript
-export const withFavorite = (WrappedComponent) => { ... };
-const Enhanced = withFavorite(MyComponent);
-```
-- Props enhancement pattern
-- Cross-cutting concerns
-- Component wrapping
-
-### 3. Render Props ✅
-```javascript
-<FavoriteButton renderProp={(status) => <UI {...status} />} />
-```
-- Maximum UI flexibility
-- Logic-UI separation
-- Dynamic composition
-
-### 4. Functional Components ✅
-- Pure functions with hooks
-- Modern ES6+ syntax
-- No class components
-
-### 5. Redux Toolkit ✅
-- Async thunks for API integration
-- Proper error handling
-- Loading state management
+- `useFavorite` keeps the favorite list and API logic together.
+- `FavoriteButton` is built to work with the app state and can render a custom UI if needed.
+- Most UI components are functional components with hooks.
+- Redux thunks handle API requests and error state.
 
 ---
 

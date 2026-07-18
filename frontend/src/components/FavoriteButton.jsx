@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 /**
- * FavoriteButton Component - Modern React functional component
- * Demonstrates:
- * - Functional components with hooks
- * - Higher-order component (HOC) pattern via withFavorite wrapper
- * - Render props pattern via renderProp prop
- * - Custom hooks integration
+ * Button for toggling a place as a favorite.
  */
 const FavoriteButton = ({ 
   place, 
@@ -41,7 +36,6 @@ const FavoriteButton = ({
     }
   };
 
-  // Render props pattern support
   if (renderProp) {
     return renderProp({ isFavorited: localIsFavorited, loading: isLoading, onToggle: handleToggle });
   }

@@ -52,7 +52,7 @@ function App() {
                 </p>
               </div>
               <div className="badge bg-success-subtle text-success-emphasis px-3 py-2 rounded-pill">
-                Redux + thunk powered
+                Favorites sync
               </div>
             </div>
 

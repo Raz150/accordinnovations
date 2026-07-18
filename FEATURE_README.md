@@ -1,10 +1,10 @@
-# ❤️ Mark as Favorite Feature - Complete Implementation
+# ❤️ Mark as Favorite Feature
 
-A production-ready implementation of a "Mark as Favorite" feature for the Accord Innovations Places Explorer, showcasing modern React patterns, Redux state management, and Spring Boot REST API with full database persistence.
+A favorite places feature for the Accord Innovations Places Explorer app, with a React frontend, Redux state handling, and a Spring Boot backend.
 
 ---
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 ```mermaid
 graph TB
@@ -121,87 +121,27 @@ graph TB
 
 ---
 
-## 🎯 React Patterns Showcase
+## Feature details
 
-### 1️⃣ **Custom Hook Pattern**
+### Custom hook
 
-```javascript
-// hooks/useFavorite.js
-export const useFavorite = () => {
-  const [favorites, setFavorites] = useState([]);
-  const [loading, setLoading] = useState(false);
-  
-  const addFavorite = useCallback(async (place) => {
-    // Encapsulated logic
-  }, []);
-  
-  return { favorites, loading, addFavorite, ... };
-};
+The `useFavorite` hook keeps API calls and favorite state in one place. It exposes the current favorites list, loading state, and helper functions for add/remove/check operations.
 
-// Usage in component
-const { favorites, addFavorite } = useFavorite();
-```
+### Component helpers
 
-**Advantages:** ✅ Reusable, ✅ Testable, ✅ Encapsulated
+`FavoriteButton` supports optional render callbacks and wrapper logic so the main UI stays simple.
+
+### Functional components
+
+Most components are simple React functions that use `useState` and `useEffect`. That keeps state handling local and easy to follow.
+
+### Redux async state
+
+The Redux slice handles favorite-related loading and error states with async thunks. That keeps the API logic separate from the UI.
 
 ---
 
-### 2️⃣ **Higher-Order Component (HOC) Pattern**
-
-```javascript
-// components/FavoriteButton.jsx
-export const withFavorite = (WrappedComponent) => {
-  return function FavoriteEnhancedComponent(props) {
-    return <WrappedComponent {...props} isFavorited={isFavorited} />;
-  };
-};
-
-// Usage
-const EnhancedComponent = withFavorite(MyComponent);
-```
-
-**Advantages:** ✅ Code reuse, ✅ Props injection, ✅ Cross-cutting concerns
-
----
-
-### 3️⃣ **Render Props Pattern**
-
-```javascript
-// components/FavoriteButton.jsx
-<FavoriteButton
-  renderProp={(status) => (
-    <div>
-      <i className={`bi bi-${status.icon}`} />
-      {status.label}
-    </div>
-  )}
-/>
-```
-
-**Advantages:** ✅ Maximum flexibility, ✅ Logic-UI separation, ✅ Dynamic composition
-
----
-
-### 4️⃣ **Functional Components & Hooks**
-
-```javascript
-// ES6+ syntax, modern React best practices
-const FavoritesList = () => {
-  const [favorites, setFavorites] = useState([]);
-  
-  useEffect(() => {
-    fetchFavorites();
-  }, []);
-  
-  return <RenderUI />;
-};
-```
-
-**Advantages:** ✅ Modern, ✅ Simpler syntax, ✅ Better performance
-
----
-
-### 5️⃣ **Redux Toolkit with Async Thunks**
+### Example async thunk
 
 ```javascript
 // store/placeSlice.js

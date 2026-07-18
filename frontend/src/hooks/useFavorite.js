@@ -1,8 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 
 /**
- * Custom hook to manage favorite functionality
- * Uses modern React patterns with hooks and functional components
+ * Hook for favorite-related API calls and local favorite state.
  */
 export const useFavorite = () => {
   const [favorites, setFavorites] = useState([]);
