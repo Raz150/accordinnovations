@@ -1,0 +1,10 @@
+/workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/BackendApplication.java
+/workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/config/LoggingFilter.java
+/workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/controller/CustomerController.java
+/workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/controller/ExternalApiController.java
+/workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/controller/HomeController.java
+/workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/dto/CustomerRequest.java
+/workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/dto/CustomerResponse.java
+/workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/model/Customer.java
+/workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/repository/CustomerRepository.java
+/workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/service/CustomerService.java

@@ -1,0 +1,47 @@
+{
+  "info": {
+    "name": "AccordInnovations Backend Assignment",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Customer",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Alice\",\n  \"email\": \"alice@example.com\",\n  \"phone\": \"1234567890\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/customers",
+          "host": ["http://localhost:8080"],
+          "path": ["api", "customers"]
+        }
+      }
+    },
+    {
+      "name": "Get Customers Page",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/customers/page?page=0&size=10",
+          "host": ["http://localhost:8080"],
+          "path": ["api", "customers", "page"],
+          "query": [{"key": "page", "value": "0"}, {"key": "size", "value": "10"}]
+        }
+      }
+    },
+    {
+      "name": "Get External Joke API",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/external/joke",
+          "host": ["http://localhost:8080"],
+          "path": ["api", "external", "joke"]
+        }
+      }
+    }
+  ]
+}

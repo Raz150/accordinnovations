@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/testdb?useSSL=true&requireSSL=false&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+server:
+  port: 8081
+logging:
+  file:
+    name: logs/backend-app.log
+  level:
+    root: INFO
+    com.accordinnovations: DEBUG
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
