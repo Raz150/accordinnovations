@@ -1,15 +1,41 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PlaceAutocomplete from './components/PlaceAutocomplete';
 import MapView from './components/MapView';
-import { clearError, saveFavoriteAsync } from './store/placeSlice';
+import FavoriteButton from './components/FavoriteButton';
+import FavoritesList from './components/FavoritesList';
+import { clearError, saveFavoriteAsync, removeFavoriteAsync, checkFavoriteStatusAsync } from './store/placeSlice';
 
 function App() {
   const dispatch = useDispatch();
-  const { currentPlace, searchHistory, status, error, favoriteStatus } = useSelector((state) => state.places);
+  const { currentPlace, searchHistory, favorites, status, error, favoriteStatus, isFavorited } = useSelector(
+    (state) => state.places
+  );
 
-  const handleFavorite = () => {
-    if (!currentPlace) return;
-    dispatch(saveFavoriteAsync(currentPlace));
+  // Check if current place is favorited when it changes
+  useEffect(() => {
+    if (currentPlace?.placeId) {
+      dispatch(checkFavoriteStatusAsync(currentPlace.placeId));
+    }
+  }, [currentPlace, dispatch]);
+
+  const handleFavoriteToggle = async (place, shouldAdd) => {
+    try {
+      if (shouldAdd) {
+        await dispatch(saveFavoriteAsync(place)).unwrap();
+      } else {
+        await dispatch(removeFavoriteAsync(place.placeId)).unwrap();
+      }
+    } catch (err) {
+      console.error('Error toggling favorite:', err);
+      throw err;
+    }
+  };
+
+  const handleSelectFavorite = (favorite) => {
+    // Convert favorite to place format and select it
+    // This would normally trigger a place selection action
+    console.log('Selected favorite:', favorite);
   };
 
   return (
@@ -33,9 +59,13 @@ function App() {
             <PlaceAutocomplete />
 
             <div className="mt-4 d-flex align-items-center gap-2 flex-wrap">
-              <button className="btn btn-primary" onClick={handleFavorite} disabled={!currentPlace || favoriteStatus === 'loading'}>
-                {favoriteStatus === 'loading' ? 'Saving…' : 'Save as favorite'}
-              </button>
+              <FavoriteButton
+                place={currentPlace}
+                isFavorited={isFavorited}
+                loading={favoriteStatus === 'loading'}
+                onFavoriteToggle={handleFavoriteToggle}
+                className="flex-shrink-0"
+              />
               {error ? (
                 <button className="btn btn-outline-secondary" onClick={() => dispatch(clearError())}>
                   Dismiss
@@ -55,6 +85,14 @@ function App() {
                     <p className="mb-0 small text-secondary">
                       Latitude: {currentPlace.lat}, Longitude: {currentPlace.lng}
                     </p>
+                    {isFavorited && (
+                      <div className="mt-2">
+                        <span className="badge bg-danger">
+                          <i className="bi bi-heart-fill me-1" />
+                          Marked as favorite
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </div>
               ) : (
@@ -68,6 +106,7 @@ function App() {
           <div className="p-4 rounded-4 shadow-sm bg-white h-100">
             <h2 className="h5 fw-semibold mb-3">Map preview</h2>
             <MapView />
+            
             <div className="history-card p-3 mt-4">
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <h3 className="h6 fw-semibold mb-0">Recent searches</h3>
@@ -85,6 +124,17 @@ function App() {
               ) : (
                 <p className="text-muted mb-0">Your search history will appear here.</p>
               )}
+            </div>
+
+            <div className="favorites-card p-3 mt-4 border-top">
+              <div className="d-flex justify-content-between align-items-center mb-3">
+                <h3 className="h6 fw-semibold mb-0">
+                  <i className="bi bi-heart-fill text-danger me-2" />
+                  Favorite places
+                </h3>
+                <span className="badge text-bg-danger">{favorites.length}</span>
+              </div>
+              <FavoritesList maxItems={5} onSelectFavorite={handleSelectFavorite} />
             </div>
           </div>
         </div>

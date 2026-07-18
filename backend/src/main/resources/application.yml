@@ -9,6 +9,8 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  application:
+    name: accordinnovations-backend
 server:
   port: 8081
 logging:

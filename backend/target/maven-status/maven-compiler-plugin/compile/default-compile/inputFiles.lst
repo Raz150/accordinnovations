@@ -2,9 +2,15 @@
 /workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/config/LoggingFilter.java
 /workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/controller/CustomerController.java
 /workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/controller/ExternalApiController.java
+/workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/controller/FavoriteController.java
 /workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/controller/HomeController.java
 /workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/dto/CustomerRequest.java
 /workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/dto/CustomerResponse.java
+/workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/dto/FavoriteRequest.java
+/workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/dto/FavoriteResponse.java
 /workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/model/Customer.java
+/workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/model/Favorite.java
 /workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/repository/CustomerRepository.java
+/workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/repository/FavoriteRepository.java
 /workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/service/CustomerService.java
+/workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/service/FavoriteService.java

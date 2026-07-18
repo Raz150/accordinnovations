@@ -1,14 +1,27 @@
 server:
-  port: 9090
+  port: 8081
 
 spring:
   datasource:
-    url: jdbc:sqlserver://java-demo-sql-server.database.windows.net:1433;databaseName=TESTDB;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30
+    url: jdbc:sqlserver://localhost:1433;databaseName=testdb;encrypt=true;trustServerCertificate=true;loginTimeout=30
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    username: ${DB_USERNAME:javaadmin}
-    password: ${DB_PASSWORD:M!rf@lah123}
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD:YourPassword@1234}
   jpa:
     database-platform: org.hibernate.dialect.SQLServerDialect
     hibernate:
       ddl-auto: update
     show-sql: true
+  application:
+    name: accordinnovations-backend
+logging:
+  file:
+    name: logs/backend-app.log
+  level:
+    root: INFO
+    com.accordinnovations: DEBUG
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
