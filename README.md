@@ -57,7 +57,7 @@ cd frontend
 npm install
 npm run dev
 ```
-The web application will be available at `http://localhost:5173`.
+The web application will be available at `http://localhost:3000`.
 
 ---
 
@@ -144,4 +144,3 @@ CREATE TABLE favorites (
 - **User Authentication**: Allow users to sign up and have their own private list of favorites.
 - **Categories**: Let users organize their favorites into lists like "Restaurants," "Parks," or "Vacation Ideas."
 - **Add Notes**: Allow users to add personal notes to each favorite place.
-
