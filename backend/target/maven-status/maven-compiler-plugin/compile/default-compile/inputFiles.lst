@@ -1,5 +1,6 @@
 /workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/BackendApplication.java
 /workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/config/LoggingFilter.java
+/workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/config/WebConfig.java
 /workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/controller/CustomerController.java
 /workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/controller/ExternalApiController.java
 /workspaces/accordinnovations/backend/src/main/java/com/accordinnovations/backend/controller/FavoriteController.java

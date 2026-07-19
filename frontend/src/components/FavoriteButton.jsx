@@ -12,27 +12,18 @@ const FavoriteButton = ({
   className = '',
   children
 }) => {
-  const [localIsFavorited, setLocalIsFavorited] = useState(isFavorited);
-  const [isLoading, setIsLoading] = useState(loading);
-
-  useEffect(() => {
-    setLocalIsFavorited(isFavorited);
-  }, [isFavorited]);
-
   const handleToggle = async (e) => {
     e.preventDefault();
     e.stopPropagation();
 
     if (!place || !onFavoriteToggle) return;
 
-    setIsLoading(true);
+    // The parent component will manage the loading state.
+    // This button just triggers the action.
     try {
-      await onFavoriteToggle(place, !localIsFavorited);
-      setLocalIsFavorited((prev) => !prev);
+      await onFavoriteToggle(place, !isFavorited);
     } catch (err) {
       console.error('Error toggling favorite:', err);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -43,14 +34,14 @@ const FavoriteButton = ({
   // Default render
   return (
     <button
-      className={`btn btn-${localIsFavorited ? 'danger' : 'outline-danger'} ${className}`}
+      className={`btn btn-${isFavorited ? 'danger' : 'outline-danger'} ${className}`}
       onClick={handleToggle}
-      disabled={isLoading || !place}
-      title={localIsFavorited ? 'Remove from favorites' : 'Add to favorites'}
+      disabled={loading || !place}
+      title={isFavorited ? 'Remove from favorites' : 'Add to favorites'}
     >
-      <i className={`bi bi-heart${localIsFavorited ? '-fill' : ''}`} />
-      {children || (localIsFavorited ? 'Remove from favorites' : 'Add to favorites')}
-      {isLoading && <span className="ms-2 spinner-border spinner-border-sm" role="status" aria-hidden="true" />}
+      <i className={`bi bi-heart${isFavorited ? '-fill' : ''}`} />
+      {children || (isFavorited ? 'Remove from favorites' : 'Add to favorites')}
+      {loading && <span className="ms-2 spinner-border spinner-border-sm" role="status" aria-hidden="true" />}
     </button>
   );
 };

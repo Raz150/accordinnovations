@@ -54,7 +54,7 @@ const FavoritesList = ({ maxItems = null, onSelectFavorite }) => {
           <li
             key={favorite.placeId}
             className="list-group-item px-0 py-2 d-flex justify-content-between align-items-start cursor-pointer"
-            onClick={() => onSelectFavorite && onSelectFavorite(favorite)}
+            onClick={onSelectFavorite ? () => onSelectFavorite(favorite) : undefined}
             style={{ cursor: onSelectFavorite ? 'pointer' : 'default' }}
           >
             <div className="flex-grow-1">

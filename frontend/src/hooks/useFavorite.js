@@ -1,5 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8081/api';
+
 /**
  * Hook for favorite-related API calls and local favorite state.
  */
@@ -17,7 +19,7 @@ export const useFavorite = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch('http://localhost:8081/api/favorites');
+      const response = await fetch(`${API_BASE_URL}/favorites`);
       if (!response.ok) {
         throw new Error('Failed to fetch favorites');
       }
@@ -35,7 +37,7 @@ export const useFavorite = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch('http://localhost:8081/api/favorites', {
+      const response = await fetch(`${API_BASE_URL}/favorites`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -68,7 +70,7 @@ export const useFavorite = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(`http://localhost:8081/api/favorites/${placeId}`, {
+      const response = await fetch(`${API_BASE_URL}/favorites/${placeId}`, {
         method: 'DELETE',
       });
 
@@ -93,7 +95,7 @@ export const useFavorite = () => {
 
   const checkFavoriteStatus = useCallback(async (placeId) => {
     try {
-      const response = await fetch(`http://localhost:8081/api/favorites/check/${placeId}`);
+      const response = await fetch(`${API_BASE_URL}/favorites/check/${placeId}`);
       if (!response.ok) {
         throw new Error('Failed to check favorite status');
       }

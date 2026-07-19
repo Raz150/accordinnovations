@@ -1,47 +1,257 @@
 {
   "info": {
-    "name": "AccordInnovations Backend Assignment",
+    "_postman_id": "accordinnovations-backend-2026",
+    "name": "AccordInnovations Backend - Places & Favorites",
+    "description": "Complete API collection for Places Explorer with Favorites feature",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "Create Customer",
-      "request": {
-        "method": "POST",
-        "header": [{"key": "Content-Type", "value": "application/json"}],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"name\": \"Alice\",\n  \"email\": \"alice@example.com\",\n  \"phone\": \"1234567890\"\n}"
+      "name": "Customers",
+      "item": [
+        {
+          "name": "Create Customer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"phone\": \"1234567890\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8081/api/customers",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "api",
+                "customers"
+              ]
+            }
+          }
         },
-        "url": {
-          "raw": "http://localhost:8080/api/customers",
-          "host": ["http://localhost:8080"],
-          "path": ["api", "customers"]
+        {
+          "name": "Get All Customers",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8081/api/customers",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "api",
+                "customers"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Customers Page",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8081/api/customers/page?page=0&size=10",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "api",
+                "customers",
+                "page"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Customer",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Jane Doe\",\n  \"email\": \"jane@example.com\",\n  \"phone\": \"0987654321\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8081/api/customers/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "api",
+                "customers",
+                "1"
+              ]
+            }
+          }
         }
-      }
+      ]
     },
     {
-      "name": "Get Customers Page",
-      "request": {
-        "method": "GET",
-        "url": {
-          "raw": "http://localhost:8080/api/customers/page?page=0&size=10",
-          "host": ["http://localhost:8080"],
-          "path": ["api", "customers", "page"],
-          "query": [{"key": "page", "value": "0"}, {"key": "size", "value": "10"}]
+      "name": "Favorites",
+      "item": [
+        {
+          "name": "Add Favorite Place",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"placeId\": \"ChIJN1blQLgOZkgRqstts5IHx8c\",\n  \"name\": \"Google Sydney\",\n  \"address\": \"Sydney NSW 2000, Australia\",\n  \"latitude\": -33.866,\n  \"longitude\": 151.193\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8081/api/favorites",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "api",
+                "favorites"
+              ]
+            },
+            "description": "Add a new favorite place. Returns 201 on success, 409 if already favorited."
+          }
+        },
+        {
+          "name": "Get All Favorites",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8081/api/favorites",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "api",
+                "favorites"
+              ]
+            },
+            "description": "Retrieve all favorite places sorted by creation date (newest first)"
+          }
+        },
+        {
+          "name": "Get Favorite by Place ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8081/api/favorites/ChIJN1blQLgOZkgRqstts5IHx8c",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "api",
+                "favorites",
+                "ChIJN1blQLgOZkgRqstts5IHx8c"
+              ]
+            },
+            "description": "Get a single favorite place by its Google Places ID"
+          }
+        },
+        {
+          "name": "Check Favorite Status",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8081/api/favorites/check/ChIJN1blQLgOZkgRqstts5IHx8c",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "api",
+                "favorites",
+                "check",
+                "ChIJN1blQLgOZkgRqstts5IHx8c"
+              ]
+            },
+            "description": "Check if a specific place is marked as favorite. Returns true/false."
+          }
+        },
+        {
+          "name": "Remove Favorite",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:8081/api/favorites/ChIJN1blQLgOZkgRqstts5IHx8c",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "api",
+                "favorites",
+                "ChIJN1blQLgOZkgRqstts5IHx8c"
+              ]
+            },
+            "description": "Remove a place from favorites"
+          }
         }
-      }
+      ]
     },
     {
-      "name": "Get External Joke API",
-      "request": {
-        "method": "GET",
-        "url": {
-          "raw": "http://localhost:8080/api/external/joke",
-          "host": ["http://localhost:8080"],
-          "path": ["api", "external", "joke"]
+      "name": "External APIs",
+      "item": [
+        {
+          "name": "Get External Joke API",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8081/api/external/joke",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "api",
+                "external",
+                "joke"
+              ]
+            }
+          }
         }
-      }
+      ]
     }
   ]
 }

@@ -11,6 +11,8 @@ com/accordinnovations/backend/model/Favorite.class
 com/accordinnovations/backend/service/CustomerService.class
 com/accordinnovations/backend/dto/FavoriteResponse.class
 com/accordinnovations/backend/BackendApplication.class
+com/accordinnovations/backend/config/WebConfig$1.class
 com/accordinnovations/backend/config/LoggingFilter.class
 com/accordinnovations/backend/service/FavoriteService.class
+com/accordinnovations/backend/config/WebConfig.class
 com/accordinnovations/backend/controller/ExternalApiController.class

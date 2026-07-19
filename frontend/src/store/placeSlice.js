@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const initialState = {
   currentPlace: null,
   searchHistory: [],
@@ -30,7 +32,7 @@ export const selectPlaceAsync = createAsyncThunk('places/selectPlace', async (pl
 
 export const saveFavoriteAsync = createAsyncThunk('places/saveFavorite', async (place, { rejectWithValue }) => {
   try {
-    const response = await fetch('http://localhost:8081/api/favorites', {
+    const response = await fetch(`${API_BASE_URL}/api/favorites`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -55,7 +57,7 @@ export const saveFavoriteAsync = createAsyncThunk('places/saveFavorite', async (
 
 export const removeFavoriteAsync = createAsyncThunk('places/removeFavorite', async (placeId, { rejectWithValue }) => {
   try {
-    const response = await fetch(`http://localhost:8081/api/favorites/${placeId}`, {
+    const response = await fetch(`${API_BASE_URL}/api/favorites/${placeId}`, {
       method: 'DELETE',
     });
 
@@ -71,7 +73,7 @@ export const removeFavoriteAsync = createAsyncThunk('places/removeFavorite', asy
 
 export const fetchAllFavoritesAsync = createAsyncThunk('places/fetchAllFavorites', async (_, { rejectWithValue }) => {
   try {
-    const response = await fetch('http://localhost:8081/api/favorites');
+    const response = await fetch(`${API_BASE_URL}/api/favorites`);
 
     if (!response.ok) {
       throw new Error('Could not fetch favorites');
@@ -85,7 +87,7 @@ export const fetchAllFavoritesAsync = createAsyncThunk('places/fetchAllFavorites
 
 export const checkFavoriteStatusAsync = createAsyncThunk('places/checkFavoriteStatus', async (placeId, { rejectWithValue }) => {
   try {
-    const response = await fetch(`http://localhost:8081/api/favorites/check/${placeId}`);
+    const response = await fetch(`${API_BASE_URL}/api/favorites/check/${placeId}`);
 
     if (!response.ok) {
       return { placeId, isFavorited: false };
