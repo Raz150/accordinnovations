@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-/**
- * Button for toggling a place as a favorite.
- */
 const FavoriteButton = ({ 
   place, 
   onFavoriteToggle, 
@@ -18,8 +15,6 @@ const FavoriteButton = ({
 
     if (!place || !onFavoriteToggle) return;
 
-    // The parent component will manage the loading state.
-    // This button just triggers the action.
     try {
       await onFavoriteToggle(place, !isFavorited);
     } catch (err) {
@@ -31,7 +26,6 @@ const FavoriteButton = ({
     return renderProp({ isFavorited: localIsFavorited, loading: isLoading, onToggle: handleToggle });
   }
 
-  // Default render
   return (
     <button
       className={`btn btn-${isFavorited ? 'danger' : 'outline-danger'} ${className}`}
@@ -48,10 +42,6 @@ const FavoriteButton = ({
 
 export default FavoriteButton;
 
-/**
- * Higher-Order Component (HOC) pattern - withFavorite
- * Wraps a component to provide favorite functionality
- */
 export const withFavorite = (WrappedComponent) => {
   return function FavoriteEnhancedComponent(props) {
     const { isFavorited = false, onFavoriteToggle } = props;

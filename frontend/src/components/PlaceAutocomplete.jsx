@@ -27,11 +27,10 @@ const PlaceAutocomplete = () => {
       fields: ['place_id', 'name', 'formatted_address', 'geometry', 'types', 'vicinity'],
     });
 
-    // Add a listener for when the user selects a place from the dropdown.
     autocompleteRef.current.addListener('place_changed', () => {
       const place = autocompleteRef.current.getPlace();
       if (!place || !place.geometry) {
-        // The user selected a place that doesn't have geometry, or the request failed.
+        // The user selected a place that doesn't have geometry || the request failed.
         console.warn('Autocomplete place selection failed:', place);
         return;
       }
@@ -39,14 +38,12 @@ const PlaceAutocomplete = () => {
     });
   }, [dispatch, isLoaded]);
 
-  // When a place is selected from the list (e.g., favorites), update the input field.
   useEffect(() => {
     if (currentPlace && inputRef.current) {
       inputRef.current.value = currentPlace.name || '';
     }
   }, [currentPlace]);
 
-  // Determine the status message to show below the input.
   const statusMessage = useMemo(() => {
     if (loadError) {
       return 'Google Maps could not be loaded.';
@@ -57,7 +54,7 @@ const PlaceAutocomplete = () => {
     if (!import.meta.env.VITE_GOOGLE_MAPS_API_KEY) {
       return 'Set VITE_GOOGLE_MAPS_API_KEY to enable Google Places autocomplete.';
     }
-    return null; // No message to display
+    return null;
   }, [isLoaded, loadError]);
 
   return (

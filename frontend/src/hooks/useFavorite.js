@@ -2,9 +2,6 @@ import { useState, useCallback, useEffect } from 'react';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8081/api';
 
-/**
- * Hook for favorite-related API calls and local favorite state.
- */
 export const useFavorite = () => {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(false);

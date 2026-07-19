@@ -2,13 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllFavoritesAsync } from '../store/placeSlice';
 
-/**
- * FavoritesList Component - Display all favorite places
- * Demonstrates:
- * - Functional component with hooks
- * - Redux integration
- * - Async state management
- */
 const FavoritesList = ({ maxItems = null, onSelectFavorite }) => {
   const dispatch = useDispatch();
   const { favorites, favoritesStatus, error } = useSelector((state) => state.places);

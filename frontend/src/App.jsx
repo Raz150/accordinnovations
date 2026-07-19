@@ -33,8 +33,6 @@ function App() {
   };
 
   const handleSelectFavorite = (favorite) => {
-    // Convert favorite to place format and select it
-    // This would normally trigger a place selection action
     console.log('Selected favorite:', favorite);
   };
 

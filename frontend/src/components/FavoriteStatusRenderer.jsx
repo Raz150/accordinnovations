@@ -1,8 +1,5 @@
 import React from 'react';
 
-/**
- * A small helper component that renders favorite status.
- */
 const FavoriteStatusRenderer = ({ isFavorited = false, loading = false, renderProp }) => {
   const status = {
     isFavorited,
