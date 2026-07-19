@@ -1,13 +1,16 @@
 #!/bin/bash
 
 # This file is used to set environment variables for local development.
-# To use it, run the following command in your terminal before starting the application:
+# This is an example file. Copy it to a new file named 'env.sh' which is ignored by git.
+#
+# To use it, fill in your database credentials and then run the following command
+# in your terminal before starting the application:
 #
 # source env.sh
 #
 
-export DB_URL="jdbc:sqlserver://java-demo-sql-server.database.windows.net:1433;databaseName=TESTDB;encrypt=true;trustServerCertificate=true;loginTimeout=30"
-export DB_USERNAME="javaadmin"
-export DB_PASSWORD="M!rf@lah123"
+export DB_URL="<your_database_url>"
+export DB_USERNAME="<your_username>"
+export DB_PASSWORD="<your_password>"
 
 echo "Environment variables for 'mssql' profile set."
